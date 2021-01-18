@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <title>Pomodoro</title>
+</head>
+
+<body>
+
+
+    <div class="modal hidden">
+        <div class="heading">
+            <h2 class="heading__title">Settings</h2>
+            <button class="heading__close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="time-settings">
+            <h3 class="menu-title">
+                Time (minutes)
+            </h3>
+            <div class="calculations">
+                <p>pomodoro</p>
+                <input type="number" id="pomodoro" min="1" max="100" value="7">
+
+            </div>
+            <div class="calculations">
+                <p>short break</p>
+                <input type="number" id="short-break" min="1" max="15" value="5">
+            </div>
+            <div class="calculations">
+                <p>long break</p>
+                <input type="number" id="long-break" min="15" max="100" value="15">
+            </div>
+
+        </div>
+
+        <div class="fonts">
+            <h3 class="menu-title">
+                Font
+            </h3>
+            <div class="font-menu">
+                <div class="font-picker">
+                    Aa
+                </div>
+                <div class="font-picker">
+                    Aa
+                </div>
+                <div class="font-picker">
+                    Aa
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="color-picker">
+
+            <h3 class="menu-title">Color</h3>
+
+            <div class="color-picker__colors">
+                <div class="color-picker__button color-picker__button--orangered button--active" data-color="#f87070">
+
+                </div>
+                <div class="color-picker__button color-picker__button--cyan" data-color="#6ff3f8">
+
+                </div>
+                <div class="color-picker__button color-picker__button--violet" data-color="#d981f9">
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="apply">
+            <button class="apply__button">Apply</button>
+        </div>
+
+    </div>
+    <div class="overlay"></div>
+
+    <div class="container">
+
+
+        <h1 class="title"> pomodoro </h1>
+
+        <nav class="nav-menu">
+            <ul class="nav-menu__items">
+                <li class="nav-menu__item nav-menu__item--active">pomodoro</li>
+                <li class="nav-menu__item">short break</li>
+                <li class="nav-menu__item">long break</li>
+
+            </ul>
+        </nav>
+
+
+        <section class="circle">
+            <div class="ring-wrapper">
+                <svg viewbox="0 0 400 400" class="ring">
+                    <circle class="ring__progress" r="160" cx="200" cy="200"></circle>
+
+                </svg>
+            </div>
+
+            <div class="timer">
+
+                <div class="timer__time">
+                    <span class="timer__display">10</span>
+
+
+                </div>
+                <div class="stopwatch">
+                    <button class="stopwatch__button">
+                        Start
+                    </button>
+                </div>
+
+
+            </div>
+
+
+
+
+
+        </section>
+
+        <div class="settings">
+            <div class="settings__icon">
+                <i class="fas fa-cog"></i>
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>
