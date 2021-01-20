@@ -28,18 +28,10 @@ const circumference = radius * 2 * Math.PI;
 
 let breakTimeShort = parseInt(shortInput.defaultValue) * 60;
 
-const bitchass = document.getElementById("set-btn").parentElement;
-
 let theTime = parseInt(pomodoroInput.defaultValue) * 60;
 
-document.addEventListener("DOMContentLoaded", function (event) {
-	display.innerText = `${theTime / 60}`;
-});
-
-console.log(theTime);
 let timeDivider;
 timeDivider = theTime;
-console.log(timeDivider);
 
 let timer;
 
@@ -88,7 +80,7 @@ navList.addEventListener("click", (e) => {
 	} else {
 		if (!e.target.classList.contains("nav-menu__items")) {
 			display.innerText = e.target.dataset.default;
-			bitchass.querySelectorAll(".nav-menu__item").forEach((e) => {
+			navButtons.forEach((e) => {
 				e.classList.remove("nav-menu__item--active");
 				e.style.backgroundColor = "";
 			});
@@ -97,6 +89,23 @@ navList.addEventListener("click", (e) => {
 		}
 	}
 });
+
+function shortTimer() {
+	const shortBreak = document.getElementById("btn-short");
+	navButtons.forEach((btn) => {
+		btn.classList.remove("nav-menu__item--active");
+		btn.style.backgroundColor = "";
+		shortBreak.style.backgroundColor = colorTheme;
+		shortBreak.classList.add("nav-menu__item--active");
+	});
+
+	theTime = parseInt(shortBreak.dataset.default) * 60;
+
+	timeDivider = theTime;
+	isRunning = !isRunning;
+	stopWatch.textContent = isRunning ? "pause" : "start";
+	startTimer();
+}
 
 colorButtons.forEach((button) => {
 	button.addEventListener("click", (e) => {
@@ -125,13 +134,13 @@ settings.addEventListener("click", () => {
 	modal.classList.remove("hidden");
 });
 
-const startTimer = () => {
+function startTimer() {
 	tickClock();
 
 	timer = setInterval(() => {
 		tickClock();
 	}, 1000);
-};
+}
 const stopTimer = () => {
 	clearInterval(timer);
 	return;
@@ -145,7 +154,7 @@ function tickClock() {
 	secondsLeft = secondsLeft < 10 ? "0" + secondsLeft : secondsLeft;
 	if (theTime < 0) {
 		clearInterval(timer);
-		return;
+		shortTimer();
 	} else {
 		setProgress(theTime);
 		theTime--;
