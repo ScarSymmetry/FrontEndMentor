@@ -51,7 +51,6 @@
 		align-items: center;
 		align-items: center;
 		margin: 0rem auto;
-		
 	}
 
 	& .calculations {
@@ -60,7 +59,6 @@
 		align-items: center;
 		width: 90%;
 		font-size: 0.8rem;
-		
 
 		input[type="number"] {
 			-moz-appearance: textfield;
@@ -69,7 +67,7 @@
 			padding: 8px;
 			border: none;
 			outline: none;
-			background-color: #eef1fa;
+			background-color: $color-greyish;
 		}
 		input[type="number"]::-webkit-inner-spin-button,
 		input[type="number"]::-webkit-outer-spin-button {
@@ -92,24 +90,20 @@
 	font-size: 0.7rem;
 	padding-top: 0.3rem;
 	padding-bottom: 0.3rem;
-	
+
 	&__items {
 		list-style-type: none;
 		display: flex;
-		
-		
 	}
 
 	&__item {
 		margin-left: 0.5rem;
 		margin-right: 0.5rem;
 		padding: 0.5rem;
-		
+
 		border-radius: 100px;
 		transition: all 0.5s ease;
 		cursor: pointer;
-
-		
 	}
 
 	& .nav-menu__item--active {
@@ -228,12 +222,26 @@
 	margin: 1rem auto;
 	justify-content: center;
 	align-items: center;
+	:nth-child(1) {
+		font-weight: 400;
+		font-style: italic;
+	}
+	:nth-child(2) {
+		font-weight: 500;
+		
+		
+	}
+	:nth-child(3) {
+		font-weight: 700;
+		
+	}
 
 	& .font-picker {
-		color: #fff;
+		cursor: pointer;
+		color: $color-grey;
 		width: 30px;
 		height: 30px;
-		background-color: black;
+		background-color: $color-greyish;
 		text-align: center;
 		line-height: 2;
 		font-size: 15px;
@@ -241,6 +249,11 @@
 		padding: 2px;
 		margin-left: 7px;
 		margin-right: 7px;
+	}
+
+	& .font-picker--active {
+		color: #fff;
+		background-color: #131732;
 	}
 }
 

@@ -5,6 +5,11 @@ const closeBtn = document.querySelector(".heading__close");
 const modal = document.querySelector(".modal");
 const settings = document.querySelector(".settings__icon");
 const navActive = document.querySelector(".nav-menu__item--active");
+const navButtons = document.querySelectorAll(".nav-menu__item");
+const navList = document.querySelector(".nav-menu__items");
+
+const fontStyle = document.querySelectorAll(".font-picker");
+const fontMenu = document.querySelector(".font-menu");
 
 const display = document.querySelector(".timer__display");
 
@@ -12,18 +17,33 @@ const applyButton = document.querySelector(".apply__button");
 const stopWatch = document.querySelector(".stopwatch__button");
 
 const colorButtons = document.querySelectorAll(".color-picker__colors");
+
 const pomodoroInput = document.getElementById("pomodoro");
+const shortInput = document.getElementById("short-break");
+const longInput = document.getElementById("long-break");
 
 const radius = circle.r.baseVal.value;
 
 const circumference = radius * 2 * Math.PI;
 
-let shitfuck = parseInt(pomodoroInput.defaultValue) * 60;
+let breakTimeShort = parseInt(shortInput.defaultValue) * 60;
 
-let theTime = shitfuck;
-let cuntshit = theTime;
+const bitchass = document.getElementById("set-btn").parentElement;
+
+let theTime = parseInt(pomodoroInput.defaultValue) * 60;
+
+document.addEventListener("DOMContentLoaded", function (event) {
+	display.innerText = `${theTime / 60}`;
+});
+
+console.log(theTime);
+let timeDivider;
+timeDivider = theTime;
+console.log(timeDivider);
 
 let timer;
+
+let colorTheme;
 
 let isRunning = false;
 
@@ -31,7 +51,7 @@ circle.style.strokeDasharray = `${circumference} ${circumference}`;
 circle.style.strokeDashoffset = circumference;
 
 function setProgress(value) {
-	const offset = (value / cuntshit) * circumference;
+	const offset = (value / timeDivider) * circumference;
 	circle.style.strokeDashoffset = offset;
 }
 
@@ -45,16 +65,50 @@ stopWatch.addEventListener("click", () => {
 	}
 });
 
+fontMenu.addEventListener("click", (e) => {
+	document.body.style.fontWeight = e.target.dataset.weight;
+	document.body.style.fontStyle = e.target.dataset.style;
+	e.target.style.fontWeight = e.target.dataset.weight;
+	e.target.style.fontStyle = e.target.dataset.style;
+	if (e.target.classList.contains("font-picker--active")) return;
+	fontStyle.forEach((font) => {
+		font.classList.remove("font-picker--active");
+		e.target.classList.add("font-picker--active");
+	});
+	console.log(document.body.style.fontWeight, document.body.style.fontStyle);
+});
+
+navList.addEventListener("click", (e) => {
+	theTime = parseInt(e.target.dataset.default) * 60;
+	timeDivider = theTime;
+
+	console.log(theTime, timeDivider);
+	if (e.target.classList.contains("nav-menu__item--active")) {
+		return;
+	} else {
+		if (!e.target.classList.contains("nav-menu__items")) {
+			display.innerText = e.target.dataset.default;
+			bitchass.querySelectorAll(".nav-menu__item").forEach((e) => {
+				e.classList.remove("nav-menu__item--active");
+				e.style.backgroundColor = "";
+			});
+			e.target.style.backgroundColor = colorTheme;
+			e.target.classList.add("nav-menu__item--active");
+		}
+	}
+});
+
 colorButtons.forEach((button) => {
 	button.addEventListener("click", (e) => {
-		const btnColor = e.target.getAttribute("data-color");
+		let btnColor = e.target.getAttribute("data-color");
+		colorTheme = btnColor;
 		circle.style.stroke = btnColor;
 		applyButton.style.backgroundColor = btnColor;
-		navActive.style.backgroundColor = btnColor;
+		console.log(colorTheme);
+
 		if (e.target.classList.contains("button--active")) {
 			return;
 		} else {
-			console.log(btnColor);
 			e.target.parentElement
 				.querySelectorAll(".button--active")
 				.forEach((e) => e.classList.remove("button--active"));
@@ -78,6 +132,10 @@ const startTimer = () => {
 		tickClock();
 	}, 1000);
 };
+const stopTimer = () => {
+	clearInterval(timer);
+	return;
+};
 
 function tickClock() {
 	let minutesLeft = parseInt(theTime / 60, 10);
@@ -94,11 +152,6 @@ function tickClock() {
 
 		display.innerHTML = `${minutesLeft} : ${secondsLeft}`;
 
-		console.log(minutesLeft, secondsLeft, theTime, cuntshit);
+		console.log(minutesLeft, secondsLeft, theTime, timeDivider);
 	}
 }
-
-const stopTimer = () => {
-	clearInterval(timer);
-	return;
-};

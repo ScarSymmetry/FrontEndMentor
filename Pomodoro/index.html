@@ -28,7 +28,7 @@
             </h3>
             <div class="calculations">
                 <p>pomodoro</p>
-                <input type="number" id="pomodoro" min="1" max="100" value="7">
+                <input type="number" id="pomodoro" min="1" max="100" value="25">
 
             </div>
             <div class="calculations">
@@ -47,13 +47,13 @@
                 Font
             </h3>
             <div class="font-menu">
-                <div class="font-picker">
+                <div class="font-picker font-picker--active" data-weight="400" data-style="italic">
                     Aa
                 </div>
-                <div class="font-picker">
+                <div class="font-picker" data-weight="500" data-style="normal">
                     Aa
                 </div>
-                <div class="font-picker">
+                <div class="font-picker" data-weight="700" data-style="bold">
                     Aa
                 </div>
             </div>
@@ -95,9 +95,9 @@
 
         <nav class="nav-menu">
             <ul class="nav-menu__items">
-                <li class="nav-menu__item nav-menu__item--active">pomodoro</li>
-                <li class="nav-menu__item">short break</li>
-                <li class="nav-menu__item">long break</li>
+                <li class="nav-menu__item nav-menu__item--active" id="set-btn" data-default="25">pomodoro</li>
+                <li class="nav-menu__item" id="set-btn" data-default="5">short break</li>
+                <li class="nav-menu__item" id="set-btn" data-default="15">long break</li>
 
             </ul>
         </nav>
