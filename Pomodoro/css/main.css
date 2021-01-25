@@ -295,9 +295,6 @@ body {
   fill: transparent;
   stroke: #f58652;
   stroke-width: 15px;
-  -webkit-transition: 0.35s stroke-dashoffset;
-  -o-transition: 0.35s stroke-dashoffset;
-  transition: 0.35s stroke-dashoffset;
   -webkit-transform: rotate(-90deg);
       -ms-transform: rotate(-90deg);
           transform: rotate(-90deg);

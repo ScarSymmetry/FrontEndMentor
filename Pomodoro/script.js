@@ -19,16 +19,13 @@ const stopWatch = document.querySelector(".stopwatch__button");
 const colorButtons = document.querySelectorAll(".color-picker__colors");
 
 const pomodoroInput = document.getElementById("pomodoro");
-const shortInput = document.getElementById("short-break");
-const longInput = document.getElementById("long-break");
+const shortBreak = document.getElementById("btn-short");
+const sessionFull = document.getElementById("btn-full");
 
 const radius = circle.r.baseVal.value;
-
 const circumference = radius * 2 * Math.PI;
 
-let breakTimeShort = parseInt(shortInput.defaultValue) * 60;
-
-let theTime = parseInt(pomodoroInput.defaultValue) * 60;
+let theTime = parseInt(pomodoroInput.value) * 60;
 
 let timeDivider;
 timeDivider = theTime;
@@ -38,18 +35,114 @@ let timer;
 let colorTheme;
 
 let isRunning = false;
+let triggerTime = false;
 
 circle.style.strokeDasharray = `${circumference} ${circumference}`;
 circle.style.strokeDashoffset = circumference;
+
+console.log(pomodoroInput.value);
+
+document.addEventListener("DOMContentLoaded", () => {
+	display.innerText = parseInt(localStorage.getItem("pomodoro"), 10);
+	theTime = parseInt(localStorage.getItem("pomodoro"), 10) * 60;
+	timeDivider = theTime;
+});
+
+pomodoroInput.addEventListener("change", (e) => {
+	console.log(e.target.value);
+	localStorage.setItem("pomodoro", e.target.value);
+	console.log(localStorage);
+	theTime = parseInt(localStorage.getItem("pomodoro"), 10) * 60;
+	timeDivider = theTime;
+	display.innerText = localStorage.getItem("pomodoro");
+	console.log(theTime);
+});
+
+function startTimer() {
+	tickClock();
+
+	timer = setInterval(() => {
+		tickClock();
+	}, 100);
+}
+
+function stopTimer() {
+	clearInterval(timer);
+	return;
+}
 
 function setProgress(value) {
 	const offset = (value / timeDivider) * circumference;
 	circle.style.strokeDashoffset = offset;
 }
 
+function shortTimer() {
+	styleChanger(navButtons, "nav-menu__item--active", shortBreak);
+
+	theTime = 60;
+
+	timeDivider = theTime;
+	triggerTime = true;
+
+	stopWatch.textContent = isRunning ? "pause" : "start";
+}
+
+function styleChanger(target, classname, button) {
+	target.forEach((btn) => {
+		btn.classList.remove(classname);
+		btn.style.backgroundColor = "";
+		button.style.backgroundColor = colorTheme;
+		button.classList.add(classname);
+	});
+}
+
+function tickClock() {
+	console.log(theTime);
+	let minutesLeft = parseInt(theTime / 60, 10);
+	let secondsLeft = parseInt(theTime % 60, 10);
+
+	minutesLeft = minutesLeft < 10 ? "0" + minutesLeft : minutesLeft;
+	secondsLeft = secondsLeft < 10 ? "0" + secondsLeft : secondsLeft;
+	if (theTime < 0) {
+		if (!triggerTime) {
+			clearInterval(timer);
+			shortTimer();
+
+			startTimer();
+		} else if (triggerTime) {
+			clearInterval(timer);
+			triggerTime = !triggerTime;
+			theTime = localStorage.getItem("pomodoro") * 60;
+			timeDivider = localStorage.getItem("pomodoro") * 60;
+
+			styleChanger(navButtons, "nav-menu__item--active", sessionFull);
+
+			startTimer();
+			console.log("session");
+		}
+	} else {
+		setProgress(theTime);
+		theTime--;
+		console.log(triggerTime);
+
+		display.innerHTML = `${minutesLeft} : ${secondsLeft}`;
+	}
+}
+
+/////////////////////////////////////// Event Listeners
+
+closeBtn.addEventListener("click", () => {
+	modal.classList.add("hidden");
+});
+
+settings.addEventListener("click", () => {
+	modal.classList.remove("hidden");
+});
+
 stopWatch.addEventListener("click", () => {
 	isRunning = !isRunning;
 	stopWatch.textContent = isRunning ? "pause" : "start";
+
 	if (isRunning) {
 		startTimer();
 	} else {
@@ -71,41 +164,21 @@ fontMenu.addEventListener("click", (e) => {
 });
 
 navList.addEventListener("click", (e) => {
-	theTime = parseInt(e.target.dataset.default) * 60;
+	const targetButton = e.target;
+	theTime = parseInt(targetButton.dataset.default) * 60;
 	timeDivider = theTime;
 
 	console.log(theTime, timeDivider);
-	if (e.target.classList.contains("nav-menu__item--active")) {
+	if (targetButton.classList.contains("nav-menu__item--active")) {
 		return;
 	} else {
-		if (!e.target.classList.contains("nav-menu__items")) {
-			display.innerText = e.target.dataset.default;
-			navButtons.forEach((e) => {
-				e.classList.remove("nav-menu__item--active");
-				e.style.backgroundColor = "";
-			});
-			e.target.style.backgroundColor = colorTheme;
-			e.target.classList.add("nav-menu__item--active");
+		if (!targetButton.classList.contains("nav-menu__items")) {
+			display.innerText = targetButton.dataset.default;
+
+			styleChanger(navButtons, "nav-menu__item--active", targetButton);
 		}
 	}
 });
-
-function shortTimer() {
-	const shortBreak = document.getElementById("btn-short");
-	navButtons.forEach((btn) => {
-		btn.classList.remove("nav-menu__item--active");
-		btn.style.backgroundColor = "";
-		shortBreak.style.backgroundColor = colorTheme;
-		shortBreak.classList.add("nav-menu__item--active");
-	});
-
-	theTime = parseInt(shortBreak.dataset.default) * 60;
-
-	timeDivider = theTime;
-	isRunning = !isRunning;
-	stopWatch.textContent = isRunning ? "pause" : "start";
-	startTimer();
-}
 
 colorButtons.forEach((button) => {
 	button.addEventListener("click", (e) => {
@@ -125,42 +198,3 @@ colorButtons.forEach((button) => {
 		}
 	});
 });
-
-closeBtn.addEventListener("click", () => {
-	modal.classList.add("hidden");
-});
-
-settings.addEventListener("click", () => {
-	modal.classList.remove("hidden");
-});
-
-function startTimer() {
-	tickClock();
-
-	timer = setInterval(() => {
-		tickClock();
-	}, 1000);
-}
-const stopTimer = () => {
-	clearInterval(timer);
-	return;
-};
-
-function tickClock() {
-	let minutesLeft = parseInt(theTime / 60, 10);
-	let secondsLeft = parseInt(theTime % 60, 10);
-
-	minutesLeft = minutesLeft < 10 ? "0" + minutesLeft : minutesLeft;
-	secondsLeft = secondsLeft < 10 ? "0" + secondsLeft : secondsLeft;
-	if (theTime < 0) {
-		clearInterval(timer);
-		shortTimer();
-	} else {
-		setProgress(theTime);
-		theTime--;
-
-		display.innerHTML = `${minutesLeft} : ${secondsLeft}`;
-
-		console.log(minutesLeft, secondsLeft, theTime, timeDivider);
-	}
-}

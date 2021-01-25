@@ -191,7 +191,7 @@
 		fill: transparent;
 		stroke: #f58652;
 		stroke-width: 15px;
-		transition: 0.35s stroke-dashoffset;
+
 		// axis compensation
 		transform: rotate(-90deg);
 		transform-origin: 50% 50%;
@@ -228,12 +228,9 @@
 	}
 	:nth-child(2) {
 		font-weight: 500;
-		
-		
 	}
 	:nth-child(3) {
 		font-weight: 700;
-		
 	}
 
 	& .font-picker {
