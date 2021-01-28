@@ -19,19 +19,19 @@ const stopWatch = document.querySelector(".stopwatch__button");
 const colorButtons = document.querySelectorAll(".color-picker__colors");
 
 const pomodoroInput = document.getElementById("pomodoro");
+const shortInput = document.getElementById("short-break");
+
 const shortBreak = document.getElementById("btn-short");
 const sessionFull = document.getElementById("btn-full");
 
 const radius = circle.r.baseVal.value;
 const circumference = radius * 2 * Math.PI;
 
-let theTime = parseInt(pomodoroInput.value) * 60;
-
+let theTime;
 let timeDivider;
 timeDivider = theTime;
 
 let timer;
-
 let colorTheme;
 
 let isRunning = false;
@@ -40,21 +40,19 @@ let triggerTime = false;
 circle.style.strokeDasharray = `${circumference} ${circumference}`;
 circle.style.strokeDashoffset = circumference;
 
-console.log(pomodoroInput.value);
+applyButton.addEventListener("click", () => {
+	console.log(shortInput.value);
+	console.log(pomodoroInput.value);
+	localStorage.setItem("short-break", shortInput.value);
+	localStorage.setItem("pomodoro", pomodoroInput.value);
 
-document.addEventListener("DOMContentLoaded", () => {
-	display.innerText = parseInt(localStorage.getItem("pomodoro"), 10);
-	theTime = parseInt(localStorage.getItem("pomodoro"), 10) * 60;
-	timeDivider = theTime;
-});
-
-pomodoroInput.addEventListener("change", (e) => {
-	console.log(e.target.value);
-	localStorage.setItem("pomodoro", e.target.value);
-	console.log(localStorage);
 	theTime = parseInt(localStorage.getItem("pomodoro"), 10) * 60;
 	timeDivider = theTime;
 	display.innerText = localStorage.getItem("pomodoro");
+	modal.classList.add("hidden");
+
+	navActive.style.backgroundColor = colorTheme;
+
 	console.log(theTime);
 });
 
@@ -63,8 +61,10 @@ function startTimer() {
 
 	timer = setInterval(() => {
 		tickClock();
-	}, 100);
+	}, 1000);
 }
+
+console.log(localStorage.getItem("short-break"));
 
 function stopTimer() {
 	clearInterval(timer);
@@ -79,7 +79,10 @@ function setProgress(value) {
 function shortTimer() {
 	styleChanger(navButtons, "nav-menu__item--active", shortBreak);
 
-	theTime = 60;
+	theTime =
+		localStorage.getItem("short-break") === null
+			? shortInput.defaultValue * 60
+			: localStorage.getItem("short-break") * 60;
 
 	timeDivider = theTime;
 	triggerTime = true;
@@ -131,6 +134,25 @@ function tickClock() {
 
 /////////////////////////////////////// Event Listeners
 
+document.addEventListener("DOMContentLoaded", () => {
+	if (localStorage.getItem("pomodoro") === null) {
+		theTime = parseInt(pomodoroInput.value) * 60;
+		timeDivider = theTime;
+		display.innerText = theTime / 60;
+	} else {
+		theTime = parseInt(localStorage.getItem("pomodoro")) * 60;
+		timeDivider = theTime;
+		display.innerText = theTime / 60;
+	}
+
+	document.body.style.fontWeight = localStorage.getItem("fontWeight");
+	document.body.style.fontStyle = localStorage.getItem("fontStyle");
+
+	colorTheme = localStorage.getItem("colorTheme");
+	navActive.style.backgroundColor = colorTheme;
+	circle.style.stroke = colorTheme;
+});
+
 closeBtn.addEventListener("click", () => {
 	modal.classList.add("hidden");
 });
@@ -160,23 +182,24 @@ fontMenu.addEventListener("click", (e) => {
 		font.classList.remove("font-picker--active");
 		e.target.classList.add("font-picker--active");
 	});
-	console.log(document.body.style.fontWeight, document.body.style.fontStyle);
+	localStorage.setItem("fontWeight", e.target.dataset.weight);
+	localStorage.setItem("fontStyle", e.target.dataset.style);
 });
 
 navList.addEventListener("click", (e) => {
 	const targetButton = e.target;
+
 	theTime = parseInt(targetButton.dataset.default) * 60;
 	timeDivider = theTime;
 
 	console.log(theTime, timeDivider);
+
 	if (targetButton.classList.contains("nav-menu__item--active")) {
 		return;
-	} else {
-		if (!targetButton.classList.contains("nav-menu__items")) {
-			display.innerText = targetButton.dataset.default;
+	} else if (!targetButton.classList.contains("nav-menu__items")) {
+		display.innerText = targetButton.dataset.default;
 
-			styleChanger(navButtons, "nav-menu__item--active", targetButton);
-		}
+		styleChanger(navButtons, "nav-menu__item--active", targetButton);
 	}
 });
 
@@ -186,7 +209,6 @@ colorButtons.forEach((button) => {
 		colorTheme = btnColor;
 		circle.style.stroke = btnColor;
 		applyButton.style.backgroundColor = btnColor;
-		console.log(colorTheme);
 
 		if (e.target.classList.contains("button--active")) {
 			return;
@@ -195,6 +217,7 @@ colorButtons.forEach((button) => {
 				.querySelectorAll(".button--active")
 				.forEach((e) => e.classList.remove("button--active"));
 			e.target.classList.add("button--active");
+			localStorage.setItem("colorTheme", colorTheme);
 		}
 	});
 });
