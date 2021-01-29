@@ -51,7 +51,7 @@ applyButton.addEventListener("click", () => {
 	display.innerText = localStorage.getItem("pomodoro");
 	modal.classList.add("hidden");
 
-	navActive.style.backgroundColor = colorTheme;
+	styleChanger(navButtons, "nav-menu__item--active", sessionFull);
 
 	console.log(theTime);
 });
