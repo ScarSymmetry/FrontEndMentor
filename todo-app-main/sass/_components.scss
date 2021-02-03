@@ -1,0 +1,267 @@
+.container {
+	min-height: 100vh;
+
+	width: 100%;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	margin: 0 auto;
+	align-items: center;
+	padding-top: 4.5rem;
+
+	padding-bottom: 3rem;
+
+	width: 85%;
+
+	&__title {
+		text-transform: uppercase;
+		font-size: 2.7rem;
+		letter-spacing: 10px;
+	}
+
+	&__switch {
+		background: transparent;
+
+		border: none;
+
+		img {
+			width: 2rem;
+			height: 2rem;
+		}
+	}
+}
+
+.create-task {
+	margin-bottom: 1.5rem;
+
+	& > .gray-box {
+		border-radius: 5px;
+		display: flex;
+		align-items: center;
+	}
+
+	&__text {
+		font-size: 1.3rem;
+		margin-left: 2rem;
+		background: transparent;
+
+		border: none;
+		outline: none;
+		color: $color-verylightgrayish-blue;
+	}
+
+	&__btn {
+		margin-left: 1.9rem;
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		background: transparent;
+		border: 2px solid $color-verydarkgrayish-blue;
+	}
+}
+
+.todo-list {
+	margin: 0 auto;
+}
+
+.new-todos {
+	&:nth-child(2) {
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+	}
+	margin: 0 auto;
+	width: 100%;
+	background-color: $color-verydarksaturated-blue;
+
+	border-bottom: 1px solid $color-verydarktheme-grayish;
+	min-height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&__item {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	& .close {
+		padding: 0.5rem;
+	}
+}
+
+
+
+[type="checkbox"] {
+	opacity: 0;
+	position: absolute;
+}
+
+[type="checkbox"]:checked + label .custom-checkbox {
+	background: $check-gradient;
+	transform: scale(1);
+	border: transparent;
+}
+
+[type="checkbox"]:checked + label .custom-checkbox::after {
+	display: block;
+}
+[type="checkbox"]:checked + label::before {
+	transform: scaleX(1);
+	transform-origin: left;
+	opacity: 0.4;
+}
+
+[type="checkbox"]:checked + label .textspan {
+	opacity: 0.4;
+}
+
+.custom-checkbox {
+	flex-shrink: 0;
+}
+
+.checkbox-wrapper {
+	& .textspan {
+		padding-top: 0.4rem;
+		color: $color-verylightgrayish-blue;
+	}
+}
+
+.checkbox-wrapper label {
+	overflow: hidden;
+	max-width: 270px;
+	flex-shrink: 0;
+
+	font-size: 1.3rem;
+
+	display: flex;
+
+	margin-left: 2rem;
+
+	align-items: center;
+	position: relative;
+}
+
+.checkbox-wrapper label::before {
+	transform: scaleX(0);
+	transition: transform 150ms ease-in-out;
+	transform-origin: right;
+	content: "";
+	position: absolute;
+	left: 3.5rem;
+	right: 0;
+	top: 50%;
+	height: 2px;
+	background: $color-lightgrayish;
+}
+
+.custom-checkbox {
+	position: relative;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: 20px;
+	cursor: pointer;
+	border: 1px solid $color-verydarkgrayish-blue;
+	border-radius: 50%;
+
+	&::after {
+		display: none;
+		content: "";
+		position: absolute;
+		left: 8px;
+		top: 4px;
+		width: 5px;
+		height: 10px;
+		border: solid white;
+		border-width: 0 3px 3px 0;
+		-webkit-transform: rotate(45deg);
+		-ms-transform: rotate(45deg);
+		transform: rotate(45deg);
+	}
+}
+
+.items-left {
+	height: 50px;
+	background-color: $color-verydarksaturated-blue;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.gray-box {
+	margin: 0 auto;
+	max-width: 327px;
+	min-width: 320px;
+
+	width: 327px;
+	height: 50px;
+	background-color: $color-verydarksaturated-blue;
+}
+
+.manage-wrapper {
+	margin: 0 auto;
+	width: 60%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	& > button {
+		background: transparent;
+
+		font-weight: bold;
+		border: none;
+		cursor: pointer;
+		color: $color-verydarkgrayish-blue;
+
+		padding: 0.5rem;
+	}
+
+	.todo-manage--active {
+		color: $color-bluehover;
+	}
+}
+
+.close {
+	background: transparent;
+	border: none;
+	margin-right: 2rem;
+	cursor: pointer;
+
+	img {
+		width: 13px;
+		height: 13px;
+	}
+}
+
+.items-left__info {
+	border-top: 1px solid $color-verydarkgrayish-blue;
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: $color-verydarkgrayish-blue;
+	margin: 0 auto;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 100%;
+
+	& .left {
+		margin-left: 2.5rem;
+	}
+
+	& .clear {
+		margin-right: 1.4rem;
+	}
+}
+
+.status-filter {
+	margin-top: 1.5rem;
+	:first-child {
+		border-radius: 5px;
+	}
+}

@@ -1,0 +1,380 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  background-image: url(../images/bg-mobile-dark.jpg);
+  background-repeat: no-repeat;
+  -webkit-background-size: auto auto;
+          background-size: auto auto;
+  background-color: #161722;
+  font-family: "Josefin Sans", sans-serif;
+  color: #fff;
+  min-height: 100vh;
+  min-width: 320px;
+}
+
+@media screen and (min-width: 376px) {
+  body {
+    background-image: url(../images/bg-desktop-dark.jpg);
+    background-position: center top;
+    -webkit-background-size: 100% auto;
+            background-size: 100% auto;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  font-family: inherit;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+.container {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 auto;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 4.5rem;
+  padding-bottom: 3rem;
+  width: 85%;
+}
+
+.header__title {
+  text-transform: uppercase;
+  font-size: 2.7rem;
+  letter-spacing: 10px;
+}
+
+.header__switch {
+  background: transparent;
+  border: none;
+}
+
+.header__switch img {
+  width: 2rem;
+  height: 2rem;
+}
+
+.create-task {
+  margin-bottom: 1.5rem;
+}
+
+.create-task > .gray-box {
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.create-task__text {
+  font-size: 1.3rem;
+  margin-left: 2rem;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e4e5f1;
+}
+
+.create-task__btn {
+  margin-left: 1.9rem;
+  width: 20px;
+  height: 20px;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  background: transparent;
+  border: 2px solid #484b6a;
+}
+
+.todo-list {
+  margin: 0 auto;
+}
+
+.new-todos {
+  margin: 0 auto;
+  width: 100%;
+  background-color: #25273c;
+  border-bottom: 1px solid #4d5066;
+  min-height: 50px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.new-todos:nth-child(2) {
+  -webkit-border-top-left-radius: 5px;
+          border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+          border-top-right-radius: 5px;
+}
+
+.new-todos__item {
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.new-todos .close {
+  padding: 0.5rem;
+}
+
+[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+}
+
+[type="checkbox"]:checked + label .custom-checkbox {
+  background: -webkit-gradient(linear, left top, right bottom, from(#57ddff), to(#c058f3));
+  background: -webkit-linear-gradient(top left, #57ddff, #c058f3);
+  background: -o-linear-gradient(top left, #57ddff, #c058f3);
+  background: linear-gradient(to bottom right, #57ddff, #c058f3);
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  border: transparent;
+}
+
+[type="checkbox"]:checked + label .custom-checkbox::after {
+  display: block;
+}
+
+[type="checkbox"]:checked + label::before {
+  -webkit-transform: scaleX(1);
+      -ms-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transform-origin: left;
+      -ms-transform-origin: left;
+          transform-origin: left;
+  opacity: 0.4;
+}
+
+[type="checkbox"]:checked + label .textspan {
+  opacity: 0.4;
+}
+
+.custom-checkbox {
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+}
+
+.checkbox-wrapper .textspan {
+  padding-top: 0.4rem;
+  color: #e4e5f1;
+}
+
+.checkbox-wrapper label {
+  overflow: hidden;
+  max-width: 270px;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  font-size: 1.3rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 2rem;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.checkbox-wrapper label::before {
+  -webkit-transform: scaleX(0);
+      -ms-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: -webkit-transform 150ms ease-in-out;
+  transition: -webkit-transform 150ms ease-in-out;
+  -o-transition: transform 150ms ease-in-out;
+  transition: transform 150ms ease-in-out;
+  transition: transform 150ms ease-in-out, -webkit-transform 150ms ease-in-out;
+  -webkit-transform-origin: right;
+      -ms-transform-origin: right;
+          transform-origin: right;
+  content: "";
+  position: absolute;
+  left: 3.5rem;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: #cacde8;
+}
+
+.custom-checkbox {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+  border: 1px solid #484b6a;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+}
+
+.custom-checkbox::after {
+  display: none;
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.items-left {
+  height: 50px;
+  background-color: #25273c;
+  -webkit-border-bottom-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+}
+
+.gray-box {
+  margin: 0 auto;
+  max-width: 327px;
+  min-width: 320px;
+  width: 327px;
+  height: 50px;
+  background-color: #25273c;
+}
+
+.manage-wrapper {
+  margin: 0 auto;
+  width: 60%;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.manage-wrapper > button {
+  background: transparent;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  color: #484b6a;
+  padding: 0.5rem;
+}
+
+.manage-wrapper .todo-manage--active {
+  color: #3a7bfd;
+}
+
+.close {
+  background: transparent;
+  border: none;
+  margin-right: 2rem;
+  cursor: pointer;
+}
+
+.close img {
+  width: 13px;
+  height: 13px;
+}
+
+.items-left__info {
+  border-top: 1px solid #484b6a;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #484b6a;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 100%;
+}
+
+.items-left__info .left {
+  margin-left: 2.5rem;
+}
+
+.items-left__info .clear {
+  margin-right: 1.4rem;
+}
+
+.status-filter {
+  margin-top: 1.5rem;
+}
+
+.status-filter :first-child {
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
+}
+/*# sourceMappingURL=main.css.map */
