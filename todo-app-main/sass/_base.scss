@@ -1,5 +1,36 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
 
+
+
+//light theme colors
+$color-verylightgray: #fafafa;
+$color-verylightgrayish-blue: #e4e5f1;
+$color-lightgrayish-blue: #d2d3db;
+$color-darkgrayish-blue: #9394a5;
+$color-verydarkgrayish-blue: #484b6a;
+
+
+// dark theme colors
+$color-verydark-blue: #161722;
+$color-verydarksaturated-blue: #25273c;
+$color-lightgrayish: #cacde8;
+$color-lightgrayish-hover: #e4e5f1;
+$color-darktheme-blue: #777a92;
+$color-verydarktheme-grayish: #4d5066;
+$color-darktheme-blue2: #393a4c;
+
+$color-bluehover: #3a7bfd;
+
+$check-gradient: linear-gradient(
+	to bottom right,
+	hsl(192, 100%, 67%),
+	hsl(280, 87%, 65%)
+);
+
+
+
+
+
 html {
 	box-sizing: border-box;
 	font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
@@ -34,25 +65,3 @@ body {
 	box-sizing: inherit;
 }
 
-//light theme colors
-$color-verylightgray: #fafafa;
-$color-verylightgrayish-blue: #e4e5f1;
-$color-lightgrayish-blue: #d2d3db;
-$color-darkgrayish-blue: #9394a5;
-$color-verydarkgrayish-blue: #484b6a;
-
-$color-verydark-blue: #161722;
-$color-verydarksaturated-blue: #25273c;
-$color-lightgrayish: #cacde8;
-$color-lightgrayish-hover: #e4e5f1;
-$color-darktheme-blue: #777a92;
-$color-verydarktheme-grayish: #4d5066;
-$color-darktheme-blue2: #393a4c;
-
-$color-bluehover: #3a7bfd;
-
-$check-gradient: linear-gradient(
-	to bottom right,
-	hsl(192, 100%, 67%),
-	hsl(280, 87%, 65%)
-);

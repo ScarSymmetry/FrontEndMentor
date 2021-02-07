@@ -5,11 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- displays site properly based on user's device -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
-    integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
-    crossorigin="anonymous" />
+
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="./css/main.css">
+  <script defer src="./script.js"></script>
 
   <title>Frontend Mentor | Todo app</title>
 
@@ -43,65 +42,17 @@
 
     <main class="todo-list">
 
+     
+        
+     
 
 
-
-
-      <div class="gray-box">
-        <div class="new-todos__item">
-
-          <div class="checkbox-wrapper">
-            <input type="checkbox" class="checkbox" id="task-1">
-            <label for="task-1">
-              <span class="custom-checkbox"></span>
-              <span class="textspan">Break records</span>
-            </label>
-          </div>
-          <button class="close">
-
-            <img src="./images/icon-cross.svg" alt="">
-
-
-          </button>
-        </div>
-      </div>
-
-      <div class="gray-box">
-        <div class="new-todos__item">
-
-          <div class="checkbox-wrapper">
-            <input type="checkbox" class="checkbox" id="task-2">
-            <label for="task-2">
-              <span class="custom-checkbox"></span>
-              <span class="textspan">Break records</span>
-            </label>
-          </div>
-          <button class="close">
-
-            <img src="./images/icon-cross.svg" alt="">
-
-
-          </button>
-        </div>
-      </div>
-
-
-
-
-
-
-
-
-      
-
-
-      
     </main>
 
     <div class="gray-box">
       <div class="items-left__info">
-        <p class="left">5 items left</p>
-        <p class="clear">Clear Completed</p>
+        <p class="left" id="items-counter"></p>
+        <button class="clear">Clear Completed</button>
       </div>
     </div>
 
