@@ -1,25 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
 
-
-
 //light theme colors
-$color-verylightgray: #fafafa;
-$color-verylightgrayish-blue: #e4e5f1;
-$color-lightgrayish-blue: #d2d3db;
-$color-darkgrayish-blue: #9394a5;
-$color-verydarkgrayish-blue: #484b6a;
-
+$lt-verylightgray: #fafafa;
+$lt-verylightgray-blue: #e4e5f1;
+$lt-lightgray-blue: #d2d3db;
+$lt-darkgray-blue: #9394a5;
+$lt-verydarkgray-blue: #484b6a;
 
 // dark theme colors
-$color-verydark-blue: #161722;
-$color-verydarksaturated-blue: #25273c;
-$color-lightgrayish: #cacde8;
-$color-lightgrayish-hover: #e4e5f1;
-$color-darktheme-blue: #777a92;
-$color-verydarktheme-grayish: #4d5066;
-$color-darktheme-blue2: #393a4c;
+$dt-verydark-blue: #161722;
+$dt-verydarksaturated-blue: #25273c;
+$dt-lightgrayish: #cacde8;
+$dt-lightgrayish-hover: #e4e5f1;
+$dt-darktheme-blue: #777a92;
+$dt-verydark-grey: #4d5066;
+$dt-verydark-grey2: #393a4c;
 
 $color-bluehover: #3a7bfd;
+
+$img-bg-dark: url(../images/bg-mobile-dark.jpg);
+$img-bg-light: url(../images/bg-mobile-light.jpg);
+$box-bg-white: #ffffff;
+
+:root {
+	--bg-dark: #{$dt-verydark-blue};
+	--color-text: #{$dt-lightgrayish};
+	--img-bg-dark: #{$img-bg-dark};
+	--box-bg: #{$dt-verydarksaturated-blue};
+}
 
 $check-gradient: linear-gradient(
 	to bottom right,
@@ -27,20 +35,16 @@ $check-gradient: linear-gradient(
 	hsl(280, 87%, 65%)
 );
 
-
-
-
-
 html {
 	box-sizing: border-box;
 	font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
 }
 
 body {
-	background-image: url(../images/bg-mobile-dark.jpg);
+	background-image: var(--img-bg-dark);
 	background-repeat: no-repeat;
 	background-size: auto auto;
-	background-color: hsl(235, 21%, 11%);
+	background-color: var(--bg-dark);
 	font-family: "Josefin Sans", sans-serif;
 	color: #fff;
 	min-height: 100vh;
@@ -51,6 +55,13 @@ body {
 		background-position: center top;
 		background-size: 100% auto;
 	}
+}
+
+.light {
+	--bg-dark: #{$lt-verylightgray-blue};
+	--img-bg-dark: #{$img-bg-light};
+	--box-bg: #{$box-bg-white};
+	--color-text: #{$dt-verydark-grey2};
 }
 
 * {
@@ -64,4 +75,3 @@ body {
 	font-family: inherit;
 	box-sizing: inherit;
 }
-

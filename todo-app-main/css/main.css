@@ -1,4 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+:root {
+  --bg-dark: #161722;
+  --color-text: #cacde8;
+  --img-bg-dark: url(../images/bg-mobile-dark.jpg);
+  --box-bg: #25273c;
+}
+
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -6,11 +13,11 @@ html {
 }
 
 body {
-  background-image: url(../images/bg-mobile-dark.jpg);
+  background-image: var(--img-bg-dark);
   background-repeat: no-repeat;
   -webkit-background-size: auto auto;
           background-size: auto auto;
-  background-color: #161722;
+  background-color: var(--bg-dark);
   font-family: "Josefin Sans", sans-serif;
   color: #fff;
   min-height: 100vh;
@@ -24,6 +31,13 @@ body {
     -webkit-background-size: 100% auto;
             background-size: 100% auto;
   }
+}
+
+.light {
+  --bg-dark: #e4e5f1;
+  --img-bg-dark: url(../images/bg-mobile-light.jpg);
+  --box-bg: #ffffff;
+  --color-text: #393a4c;
 }
 
 * {
@@ -102,7 +116,7 @@ body {
   background: transparent;
   border: none;
   outline: none;
-  color: #e4e5f1;
+  color: #777a92;
 }
 
 .create-task__btn {
@@ -112,40 +126,12 @@ body {
   -webkit-border-radius: 50%;
           border-radius: 50%;
   background: transparent;
-  border: 2px solid #484b6a;
+  border: 1px solid #4d5066;
 }
 
 .todo-list {
   margin: 0 auto;
   min-height: 300px;
-  background-color: rgba(0, 0, 0, 0.151);
-}
-
-.new-todos {
-  margin: 0 auto;
-  width: 100%;
-  background-color: #25273c;
-  border-bottom: 1px solid #4d5066;
-  min-height: 50px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.new-todos:nth-child(2) {
-  -webkit-border-top-left-radius: 5px;
-          border-top-left-radius: 5px;
-  -webkit-border-top-right-radius: 5px;
-          border-top-right-radius: 5px;
 }
 
 .new-todos__item {
@@ -163,6 +149,7 @@ body {
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  border-bottom: 1px solid #4d5066;
 }
 
 [type="checkbox"] {
@@ -186,12 +173,7 @@ body {
 }
 
 [type="checkbox"]:checked + label::before {
-  -webkit-transform: scaleX(1);
-      -ms-transform: scaleX(1);
-          transform: scaleX(1);
-  -webkit-transform-origin: left;
-      -ms-transform-origin: left;
-          transform-origin: left;
+  display: block;
   opacity: 0.4;
 }
 
@@ -207,7 +189,7 @@ body {
 
 .checkbox-wrapper .textspan {
   padding-top: 0.4rem;
-  color: #e4e5f1;
+  color: var(--color-text);
 }
 
 .checkbox-wrapper label {
@@ -230,9 +212,7 @@ body {
 }
 
 .checkbox-wrapper label::before {
-  -webkit-transform: scaleX(0);
-      -ms-transform: scaleX(0);
-          transform: scaleX(0);
+  display: none;
   -webkit-transition: -webkit-transform 150ms ease-in-out;
   transition: -webkit-transform 150ms ease-in-out;
   -o-transition: transform 150ms ease-in-out;
@@ -247,7 +227,7 @@ body {
   right: 0;
   top: 50%;
   height: 2px;
-  background: #cacde8;
+  background: #d2d3db;
 }
 
 .custom-checkbox {
@@ -257,7 +237,7 @@ body {
   height: 20px;
   margin-right: 20px;
   cursor: pointer;
-  border: 1px solid #484b6a;
+  border: 1px solid #4d5066;
   -webkit-border-radius: 50%;
           border-radius: 50%;
 }
@@ -291,14 +271,15 @@ body {
   min-width: 320px;
   width: 327px;
   height: 50px;
-  background-color: #25273c;
+  background-color: var(--box-bg);
+  color: white;
 }
 
 .items-left__info {
-  border-top: 1px solid #484b6a;
+  border-top: 1px solid #4d5066;
   font-size: 1.2rem;
   font-weight: bold;
-  color: #484b6a;
+  color: #4d5066;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -324,7 +305,7 @@ body {
   background: transparent;
   padding: 0.3rem;
   cursor: pointer;
-  color: #484b6a;
+  color: #4d5066;
   border: none;
 }
 
@@ -351,7 +332,7 @@ body {
   font-weight: bold;
   border: none;
   cursor: pointer;
-  color: #484b6a;
+  color: #4d5066;
   padding: 0.5rem;
 }
 
@@ -382,11 +363,5 @@ body {
 .status-filter :first-child {
   -webkit-border-radius: 5px;
           border-radius: 5px;
-}
-
-.batch-toggle {
-  width: 20px;
-  height: 20px;
-  background-color: red;
 }
 /*# sourceMappingURL=main.css.map */

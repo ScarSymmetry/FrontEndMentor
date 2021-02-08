@@ -49,7 +49,7 @@
 
 		border: none;
 		outline: none;
-		color: $color-verylightgrayish-blue;
+		color: $dt-darktheme-blue;
 	}
 
 	&__btn {
@@ -58,7 +58,7 @@
 		height: 20px;
 		border-radius: 50%;
 		background: transparent;
-		border: 2px solid $color-verydarkgrayish-blue;
+		border: 1px solid $dt-verydark-grey;
 	}
 }
 
@@ -66,31 +66,15 @@
 .todo-list {
 	margin: 0 auto;
 	min-height: 300px;
-	background-color: rgba(0, 0, 0, 0.151);
 }
 
-.new-todos {
-	&:nth-child(2) {
-		border-top-left-radius: 5px;
-		border-top-right-radius: 5px;
-	}
-	margin: 0 auto;
+.new-todos__item {
+	height: 100%;
 	width: 100%;
-	background-color: $color-verydarksaturated-blue;
-
-	border-bottom: 1px solid $color-verydarktheme-grayish;
-	min-height: 50px;
 	display: flex;
-	justify-content: center;
 	align-items: center;
-
-	&__item {
-		height: 100%;
-		width: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
+	justify-content: space-between;
+	border-bottom: 1px solid $dt-verydark-grey;
 }
 
 //Checkbox input  and label styling
@@ -110,8 +94,8 @@
 	display: block;
 }
 [type="checkbox"]:checked + label::before {
-	transform: scaleX(1);
-	transform-origin: left;
+	display: block;
+
 	opacity: 0.4;
 }
 
@@ -126,7 +110,7 @@
 .checkbox-wrapper {
 	& .textspan {
 		padding-top: 0.4rem;
-		color: $color-verylightgrayish-blue;
+		color: var(--color-text);
 	}
 }
 
@@ -146,7 +130,7 @@
 }
 
 .checkbox-wrapper label::before {
-	transform: scaleX(0);
+	display: none;
 	transition: transform 150ms ease-in-out;
 	transform-origin: right;
 	content: "";
@@ -155,7 +139,7 @@
 	right: 0;
 	top: 50%;
 	height: 2px;
-	background: $color-lightgrayish;
+	background: $lt-lightgray-blue;
 }
 
 .custom-checkbox {
@@ -165,7 +149,7 @@
 	height: 20px;
 	margin-right: 20px;
 	cursor: pointer;
-	border: 1px solid $color-verydarkgrayish-blue;
+	border: 1px solid $dt-verydark-grey;
 	border-radius: 50%;
 
 	&::after {
@@ -196,16 +180,17 @@
 
 	width: 327px;
 	height: 50px;
-	background-color: $color-verydarksaturated-blue;
+	background-color: var(--box-bg);
+	color: white;
 }
 
 //////////////////////
 
 .items-left__info {
-	border-top: 1px solid $color-verydarkgrayish-blue;
+	border-top: 1px solid $dt-verydark-grey;
 	font-size: 1.2rem;
 	font-weight: bold;
-	color: $color-verydarkgrayish-blue;
+	color: $dt-verydark-grey;
 
 	display: flex;
 	align-items: center;
@@ -222,7 +207,7 @@
 		background: transparent;
 		padding: 0.3rem;
 		cursor: pointer;
-		color: $color-verydarkgrayish-blue;
+		color: $dt-verydark-grey;
 		border: none;
 	}
 }
@@ -241,7 +226,7 @@
 		font-weight: bold;
 		border: none;
 		cursor: pointer;
-		color: $color-verydarkgrayish-blue;
+		color: $dt-verydark-grey;
 
 		padding: 0.5rem;
 	}
@@ -272,11 +257,4 @@
 	:first-child {
 		border-radius: 5px;
 	}
-}
-
-.batch-toggle {
-	width: 20px;
-	height: 20px;
-	background-color: red;
-
 }

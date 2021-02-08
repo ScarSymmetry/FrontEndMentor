@@ -34,6 +34,9 @@ function handleCheck(e) {
 				match.checked = checkedInput;
 			}
 		});
+
+		const minusChecked = fuckingArray.filter((t) => t.checked != "checked");
+		todosLeft(minusChecked);
 	}
 }
 
@@ -61,6 +64,7 @@ function render(array) {
 	array.forEach((t, i) => {
 		const grayBox = document.createElement("div");
 		grayBox.classList.add("gray-box");
+
 		grayBox.innerHTML = ` <div class="new-todos__item">
             <div class="checkbox-wrapper">
               <input type="checkbox" class="checkbox"  data-id="${t.id}"   id="task-${i}" ${t.checked}>
@@ -76,7 +80,8 @@ function render(array) {
 
 		todoContainer.appendChild(grayBox);
 		inputField.value = "";
-		itemsLeft.textContent = fuckingArray.length;
+
+		todosLeft(fuckingArray);
 	});
 }
 
@@ -97,6 +102,7 @@ inputField.addEventListener("keydown", (e) => {
 		fuckingArray.push(newTodo);
 
 		render(fuckingArray);
+
 		todosLeft(fuckingArray);
 		showStatus();
 	}
@@ -129,6 +135,8 @@ function removeTodo(e) {
 		fuckingArray = fuckingArray.filter((t) => t.id != e.target.id);
 		render(fuckingArray);
 		showStatus();
-		todosLeft(fuckingArray);
+		let markedRemoved = fuckingArray.filter((t) => t.checked).length;
+
+		itemsLeft.textContent = `${fuckingArray.length - markedRemoved} items left`;
 	}
 }
