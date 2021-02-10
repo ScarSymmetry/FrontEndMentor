@@ -5,7 +5,7 @@ const checkMarkAll = document.querySelector(".create-task__btn");
 const inputField = document.querySelector(".create-task__text");
 const itemsLeft = document.querySelector("#items-counter");
 const closeBtn = document.querySelector(".close");
-
+const themeSwitch = document.querySelector(".header__switch");
 const check = document.querySelector(".label");
 const checkBox = document.querySelector(".checkbox");
 const allTodos = document.querySelector(".todo-manage__all");
@@ -14,14 +14,16 @@ const completedTodos = document.querySelector(".todo-manage__completed");
 const clearCompleted = document.querySelector(".clear");
 
 const statusFilter = document.querySelector(".status-filter");
+const managePanel = document.querySelector(".manage-wrapper");
 
-let fuckingArray = [];
+let fuckingArray = JSON.parse(localStorage.getItem("taskArray")) || [];
 
 showStatus();
 
 //Event delegated listeners
 document.body.addEventListener("click", (e) => {
 	handleCheck(e);
+	removeTodo(e);
 });
 
 function handleCheck(e) {
@@ -57,7 +59,13 @@ function clearChecked() {
 	fuckingArray = fuckingArray.filter((t) => !t.checked);
 	render(fuckingArray);
 	todosLeft(fuckingArray);
+	Array.from(managePanel.children).forEach((el) => {
+		el.classList.remove("todo-manage--active");
+	});
+	managePanel.children[0].classList.add("todo-manage--active");
 }
+
+// Render view function
 
 function render(array) {
 	todoContainer.innerHTML = "";
@@ -85,6 +93,19 @@ function render(array) {
 	});
 }
 
+// Delete todo from the list
+
+function removeTodo(e) {
+	if (e.target.classList.contains("close")) {
+		fuckingArray = fuckingArray.filter((t) => t.id != e.target.id);
+		render(fuckingArray);
+		showStatus();
+		let markedRemoved = fuckingArray.filter((t) => t.checked).length;
+
+		itemsLeft.textContent = `${fuckingArray.length - markedRemoved} items left`;
+	}
+}
+
 function showStatus() {
 	fuckingArray.length === 0
 		? (statusFilter.style.display = "none")
@@ -98,11 +119,8 @@ inputField.addEventListener("keydown", (e) => {
 			checked: false,
 			id: Date.now(),
 		};
-
 		fuckingArray.push(newTodo);
-
 		render(fuckingArray);
-
 		todosLeft(fuckingArray);
 		showStatus();
 	}
@@ -126,17 +144,20 @@ function todosLeft(arr) {
 activeTodos.addEventListener("click", (e) => {
 	const active = fuckingArray.filter((t) => !t.checked);
 	render(active);
+	todosLeft(active);
 });
 
-todoContainer.addEventListener("click", removeTodo);
+themeSwitch.addEventListener("click", (e) => {
+	document.body.classList.toggle("light");
+});
 
-function removeTodo(e) {
-	if (e.target.classList.contains("close")) {
-		fuckingArray = fuckingArray.filter((t) => t.id != e.target.id);
-		render(fuckingArray);
-		showStatus();
-		let markedRemoved = fuckingArray.filter((t) => t.checked).length;
-
-		itemsLeft.textContent = `${fuckingArray.length - markedRemoved} items left`;
+document.addEventListener("click", (e) => {
+	if (e.target.parentElement.classList.contains("manage-wrapper")) {
+		Array.from(managePanel.children).forEach((el) => {
+			el.classList.remove("todo-manage--active");
+		});
+		e.target.classList.add("todo-manage--active");
 	}
-}
+});
+
+

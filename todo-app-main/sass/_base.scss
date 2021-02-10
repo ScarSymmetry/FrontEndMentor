@@ -21,12 +21,15 @@ $color-bluehover: #3a7bfd;
 $img-bg-dark: url(../images/bg-mobile-dark.jpg);
 $img-bg-light: url(../images/bg-mobile-light.jpg);
 $box-bg-white: #ffffff;
+$theme-sun: url(../images/icon-sun.svg);
+$theme-moon: url(../images/icon-moon.svg);
 
 :root {
 	--bg-dark: #{$dt-verydark-blue};
 	--color-text: #{$dt-lightgrayish};
 	--img-bg-dark: #{$img-bg-dark};
 	--box-bg: #{$dt-verydarksaturated-blue};
+	--btn-switch: #{$theme-sun};
 }
 
 $check-gradient: linear-gradient(
@@ -38,6 +41,9 @@ $check-gradient: linear-gradient(
 html {
 	box-sizing: border-box;
 	font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
+	@media screen and(min-width:768px) {
+		font-size: 75%;
+	}
 }
 
 body {
@@ -48,7 +54,9 @@ body {
 	font-family: "Josefin Sans", sans-serif;
 	color: #fff;
 	min-height: 100vh;
-	min-width: 320px;
+	width: 100%;
+	
+	transition: all 350ms;
 
 	@media screen and(min-width:376px) {
 		background-image: url(../images/bg-desktop-dark.jpg);
@@ -62,6 +70,7 @@ body {
 	--img-bg-dark: #{$img-bg-light};
 	--box-bg: #{$box-bg-white};
 	--color-text: #{$dt-verydark-grey2};
+	--btn-switch: #{$theme-moon};
 }
 
 * {

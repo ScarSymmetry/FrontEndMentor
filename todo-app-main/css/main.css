@@ -4,12 +4,19 @@
   --color-text: #cacde8;
   --img-bg-dark: url(../images/bg-mobile-dark.jpg);
   --box-bg: #25273c;
+  --btn-switch: url(../images/icon-sun.svg);
 }
 
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-size: 62.5%;
+}
+
+@media screen and (min-width: 768px) {
+  html {
+    font-size: 75%;
+  }
 }
 
 body {
@@ -21,7 +28,10 @@ body {
   font-family: "Josefin Sans", sans-serif;
   color: #fff;
   min-height: 100vh;
-  min-width: 320px;
+  width: 100%;
+  -webkit-transition: all 350ms;
+  -o-transition: all 350ms;
+  transition: all 350ms;
 }
 
 @media screen and (min-width: 376px) {
@@ -38,6 +48,7 @@ body {
   --img-bg-dark: url(../images/bg-mobile-light.jpg);
   --box-bg: #ffffff;
   --color-text: #393a4c;
+  --btn-switch: url(../images/icon-moon.svg);
 }
 
 * {
@@ -54,8 +65,8 @@ body {
 }
 
 .container {
+  margin: 0 auto;
   min-height: 100vh;
-  width: 100%;
 }
 
 .header {
@@ -73,8 +84,8 @@ body {
       -ms-flex-align: center;
           align-items: center;
   padding-top: 4.5rem;
+  max-width: 300px;
   padding-bottom: 3rem;
-  width: 85%;
 }
 
 .header__title {
@@ -85,12 +96,16 @@ body {
 
 .header__switch {
   background: transparent;
+  background-image: var(--btn-switch);
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-transition: 250ms all;
+  -o-transition: 250ms all;
+  transition: 250ms all;
+  outline: none;
   border: none;
-}
-
-.header__switch img {
-  width: 2rem;
-  height: 2rem;
+  width: 30px;
+  height: 30px;
 }
 
 .create-task {
@@ -131,7 +146,7 @@ body {
 
 .todo-list {
   margin: 0 auto;
-  min-height: 300px;
+  min-height: 200px;
 }
 
 .new-todos__item {
@@ -267,9 +282,8 @@ body {
       -ms-flex-align: center;
           align-items: center;
   margin: 0 auto;
-  max-width: 327px;
-  min-width: 320px;
-  width: 327px;
+  max-width: 320px;
+  width: 310px;
   height: 50px;
   background-color: var(--box-bg);
   color: white;
@@ -336,6 +350,10 @@ body {
   padding: 0.5rem;
 }
 
+.manage-wrapper > button:hover {
+  color: #e4e5f1;
+}
+
 .manage-wrapper .todo-manage--active {
   color: #3a7bfd;
 }
@@ -357,7 +375,7 @@ body {
 }
 
 .status-filter {
-  margin-top: 1.5rem;
+  margin: 2rem auto;
 }
 
 .status-filter :first-child {

@@ -1,7 +1,6 @@
 .container {
+	margin: 0 auto;
 	min-height: 100vh;
-
-	width: 100%;
 }
 
 .header {
@@ -10,10 +9,9 @@
 	margin: 0 auto;
 	align-items: center;
 	padding-top: 4.5rem;
+	max-width: 300px;
 
 	padding-bottom: 3rem;
-
-	width: 85%;
 
 	&__title {
 		text-transform: uppercase;
@@ -23,13 +21,15 @@
 
 	&__switch {
 		background: transparent;
+		background-image: var(--btn-switch);
+		background-repeat: no-repeat;
+		background-position: center;
+		transition: 250ms all;
+		outline: none;
 
 		border: none;
-
-		img {
-			width: 2rem;
-			height: 2rem;
-		}
+		width: 30px;
+		height: 30px;
 	}
 }
 
@@ -65,7 +65,7 @@
 // todo list container
 .todo-list {
 	margin: 0 auto;
-	min-height: 300px;
+	min-height: 200px;
 }
 
 .new-todos__item {
@@ -175,10 +175,9 @@
 	display: flex;
 	align-items: center;
 	margin: 0 auto;
-	max-width: 327px;
-	min-width: 320px;
+	max-width: 320px;
 
-	width: 327px;
+	width: 310px;
 	height: 50px;
 	background-color: var(--box-bg);
 	color: white;
@@ -231,6 +230,10 @@
 		padding: 0.5rem;
 	}
 
+	> button:hover {
+		color: $dt-lightgrayish-hover;
+	}
+
 	.todo-manage--active {
 		color: $color-bluehover;
 	}
@@ -253,7 +256,7 @@
 }
 
 .status-filter {
-	margin-top: 1.5rem;
+	margin: 2rem auto;
 	:first-child {
 		border-radius: 5px;
 	}
