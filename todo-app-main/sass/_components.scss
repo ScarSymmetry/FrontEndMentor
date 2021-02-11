@@ -51,15 +51,20 @@
 		outline: none;
 		color: $dt-darktheme-blue;
 	}
+}
 
-	&__btn {
-		margin-left: 1.9rem;
-		width: 20px;
-		height: 20px;
-		border-radius: 50%;
-		background: transparent;
-		border: 1px solid $dt-verydark-grey;
-	}
+.check-all {
+	margin-left: 1.9rem;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: transparent;
+	border: 1px solid $dt-darktheme-blue;
+	outline: none;
+}
+
+.check-all--active {
+	background: $check-gradient;
 }
 
 // todo list container
